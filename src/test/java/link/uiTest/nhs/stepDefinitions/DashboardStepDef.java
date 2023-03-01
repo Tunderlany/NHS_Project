@@ -58,8 +58,8 @@ public class DashboardStepDef {
 
 
 
-    @Given("User clicks add user link")
-    public void user_clicks_add_user_link() {
+    @Given("User clicks add patient link")
+    public void user_clicks_add_patient_link() {
         dashboardPage.clickAddPatient();
     }
 

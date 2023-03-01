@@ -8,7 +8,7 @@
 
     @NA-38
     Scenario: Testing the adding patient functionality of NHS web app
-      Given User clicks add user link
+      Given User clicks add patient link
       When User fills out patient information 'Lily', 'James', '111', '11/10/2000', 'Female'
       And User selects patient disease
       | Allergies |

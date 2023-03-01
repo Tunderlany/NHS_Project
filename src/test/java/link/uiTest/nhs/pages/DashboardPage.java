@@ -36,6 +36,9 @@ public class DashboardPage {
     @FindBy(partialLinkText = "Add patient")
     WebElement addPatientLink;
 
+    @FindBy(partialLinkText = "System settings")
+    WebElement systemSettingsLink;
+
     @FindBy(xpath = "//table[@id='patients-waiting']//tr/td[2]")
     List<WebElement> patientsWaiting;
 
@@ -98,5 +101,9 @@ public class DashboardPage {
             waitingPatients.add(BrowserUtils.getText(patient));
         }
         return waitingPatients;
+    }
+
+    public void clickSystemSettings(){
+        systemSettingsLink.click();
     }
 }

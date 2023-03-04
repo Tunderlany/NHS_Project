@@ -34,7 +34,7 @@ public class SystemSettingsStepDef {
     }
     @Then("User validates diseases are sorted by disease name")
     public void user_validates_diseases_are_sorted_by_disease_name() {
-        systemSettingsPage.validateDiseaseSortingOrder();
+        Assert.assertTrue(systemSettingsPage.validateDiseaseSortingOrder());
     }
 
 
@@ -53,5 +53,50 @@ public class SystemSettingsStepDef {
     public void user_validates_disease_has_successfully_been_deleted(String diseaseName) {
         Assert.assertFalse(systemSettingsPage.getAllDiseases().contains(diseaseName));
     }
+
+
+
+
+    @When("User adds new room {string}")
+    public void user_adds_new_room(String roomName) {
+        systemSettingsPage.addNewRoom(roomName);
+    }
+    @Then("User validates room {string} has successfully been added")
+    public void user_validates_room_has_successfully_been_added(String roomName) {
+        Assert.assertTrue(systemSettingsPage.getAllRooms().contains(roomName));
+    }
+    @Then("User validates rooms are sorted by room name")
+    public void user_validates_rooms_are_sorted_by_room_name() {
+        Assert.assertTrue(systemSettingsPage.validateRoomSortingOrder());
+    }
+
+
+
+
+    @When("User adds  existing room {string}")
+    public void user_adds_existing_room(String roomName) {
+        systemSettingsPage.addExistingRoom(roomName);
+    }
+    @Then("User validates room {string} has NOT been added again")
+    public void user_validates_room_has_not_been_added_again(String roomName) {
+        Assert.assertEquals(1,systemSettingsPage.getRoomNameOccurrence(roomName));
+    }
+
+
+
+
+    @When("User selects room {string}")
+    public void user_selects_room(String roomName) {
+        systemSettingsPage.selectRoom(roomName);
+    }
+    @When("User clicks delete room button")
+    public void user_clicks_delete_room_button() {
+        systemSettingsPage.clickDeleteRooms();
+    }
+    @Then("User validates room {string} has successfully been deleted")
+    public void user_validates_room_has_successfully_been_deleted(String roomName) {
+        Assert.assertFalse(systemSettingsPage.getAllRooms().contains(roomName));
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package link.uiTest.nhs.pages;
 
 import link.uiTest.nhs.utils.BrowserUtils;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,23 @@ public class SystemSettingsPage {
 
     @FindBy(xpath = "//input[@value='Delete diseases']")
     WebElement deleteDiseasesButton;
+
+    @FindBy(name = "roomName")
+    WebElement roomNameBox;
+
+    @FindBy(xpath = "//input[@value='Add room']")
+    WebElement addRoomButton;
+
+    @FindBy(xpath = "//table[@id='rooms-table']//tr/td[1]")
+    List<WebElement> allRooms;
+
+    @FindBy(xpath = "//table[@id='rooms-table']//input[@type='checkbox']")
+    List<WebElement> allRoomCheckboxes;
+
+    @FindBy(xpath = "//input[@value='Delete rooms']")
+    WebElement deleteRoomsButton;
+
+
 
 
     public void fillDiseaseInfo(String diseaseName, String diseaseScore){
@@ -71,6 +89,57 @@ public class SystemSettingsPage {
     public void clickDeleteDiseases(){
         deleteDiseasesButton.click();
     }
+
+    public void addNewRoom(String roomName){
+        roomNameBox.sendKeys(roomName);
+        addRoomButton.click();
+    }
+
+    public void addExistingRoom(String roomName){
+        Assert.assertTrue(getAllRooms().contains(roomName));
+        roomNameBox.sendKeys(roomName);
+        addRoomButton.click();
+    }
+
+    public List<String> getAllRooms(){
+        List<String> rooms = new ArrayList<>();
+        for(WebElement room : allRooms){
+            rooms.add(BrowserUtils.getText(room));
+        }
+        return rooms;
+    }
+
+    public boolean validateRoomSortingOrder(){
+        List<String> actualOrder = getAllRooms();
+        Collections.sort(getAllRooms());
+        List<String> expectedOrder = getAllRooms();
+        return expectedOrder.equals(actualOrder);
+    }
+
+    public int getRoomNameOccurrence(String roomName){
+        int roomNameOccurrence = 0;
+        for(WebElement room : allRooms){
+            if(BrowserUtils.getText(room).equals(roomName)){
+                roomNameOccurrence++;
+            }
+        }
+        return roomNameOccurrence;
+    }
+
+    public void selectRoom(String roomName){
+        for(int i=0; i<allRooms.size(); i++){
+            if(BrowserUtils.getText(allRooms.get(i)).equalsIgnoreCase(roomName)){
+                allRoomCheckboxes.get(i).click();
+            }
+        }
+
+    }
+
+    public void clickDeleteRooms(){
+        deleteRoomsButton.click();
+    }
+
+
 
 
 

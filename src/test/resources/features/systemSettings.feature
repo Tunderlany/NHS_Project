@@ -20,3 +20,24 @@
       When User selects disease 'Influenza'
       And User clicks delete diseases button
       Then User validates disease 'Influenza' has successfully been deleted
+
+      @NA-46
+    Scenario: Testing the add room functionality
+      Given User clicks system settings link
+      When User adds new room 'Room 27'
+      Then User validates room 'Room 27' has successfully been added
+      And User validates rooms are sorted by room name
+
+      @NA-46
+    Scenario: Adding duplicate room
+      Given User clicks system settings link
+      When User adds  existing room 'Room 27'
+      Then User validates room 'Room 27' has NOT been added again
+
+      @NA-46
+    Scenario: Deleting room functionality
+      Given User clicks system settings link
+      When User selects room 'Room 27'
+      And User clicks delete room button
+      Then User validates room 'Room 27' has successfully been deleted
+

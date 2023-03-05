@@ -51,6 +51,20 @@ public class SystemSettingsPage {
     @FindBy(xpath = "//input[@value='Delete rooms']")
     WebElement deleteRoomsButton;
 
+    @FindBy(name = "username")
+    WebElement usernameBox;
+
+    @FindBy(name = "password")
+    WebElement passwordBox;
+
+    @FindBy(xpath = "//button[.='Add user']")
+    WebElement addUserButton;
+
+    @FindBy(linkText = "Logout")
+    WebElement logoutButton;
+
+
+
 
 
 
@@ -137,6 +151,17 @@ public class SystemSettingsPage {
 
     public void clickDeleteRooms(){
         deleteRoomsButton.click();
+    }
+
+
+    public void addUser(String username, String password){
+        usernameBox.sendKeys(username);
+        passwordBox.sendKeys(password);
+        addUserButton.click();
+    }
+
+    public void logout(){
+        logoutButton.click();
     }
 
 

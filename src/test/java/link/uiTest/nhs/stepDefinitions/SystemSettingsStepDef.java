@@ -99,4 +99,16 @@ public class SystemSettingsStepDef {
     }
 
 
+
+    @When("User adds new user with username {string} and password {string}")
+    public void user_adds_new_user_with_username_and_password(String username, String password) {
+        systemSettingsPage.addUser(username, password);
+    }
+    @When("User logs out")
+    public void user_logs_out() {
+        systemSettingsPage.logout();
+    }
+
+
+
 }

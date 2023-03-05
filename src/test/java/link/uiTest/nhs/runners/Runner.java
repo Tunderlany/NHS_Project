@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "link/uiTest/nhs/stepDefinitions",
         dryRun = false,
-        tags = "@NA-46",
+        tags = "@NA-51",
         plugin = {"pretty","html:target/uiReport.html","rerun:target/uiFailedTests.txt",
                 "json:target/cucumber-reports/cucumber.json"}
 )

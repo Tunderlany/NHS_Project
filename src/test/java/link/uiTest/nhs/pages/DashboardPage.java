@@ -42,6 +42,14 @@ public class DashboardPage {
     @FindBy(xpath = "//table[@id='patients-waiting']//tr/td[2]")
     List<WebElement> patientsWaiting;
 
+    @FindBy(css = "#patients-waiting_filter input")
+    WebElement searchPatientWaitingBox;
+
+    @FindBy(xpath = "//table[@id='patients-waiting']//tr/td[1]")
+    List<WebElement> patientsWaitingIDs;
+
+
+
 
     public Integer getNumberOfCards(){
         return cards.size();
@@ -105,5 +113,33 @@ public class DashboardPage {
 
     public void clickSystemSettings(){
         systemSettingsLink.click();
+    }
+
+    public List<String> getAllWaitingPatientsIDs(){
+        List<String> waitingPatientsIDs = new ArrayList<>();
+        for(WebElement patientID : patientsWaitingIDs){
+            waitingPatientsIDs.add(BrowserUtils.getText(patientID));
+        }
+        return waitingPatientsIDs;
+    }
+
+    public void searchWithName(List<String> names) throws InterruptedException {
+        for(String name : names){
+            searchPatientWaitingBox.clear();
+            searchPatientWaitingBox.sendKeys(name);
+            Thread.sleep(300);
+            for(String patient : getAllWaitingPatients()){
+                Assert.assertTrue(patient.contains(name));
+            }
+        }
+    }
+
+    public void searchWithID(String ID) throws InterruptedException {
+        searchPatientWaitingBox.clear();
+        searchPatientWaitingBox.sendKeys(ID);
+        Thread.sleep(300);
+        for(String patientID : getAllWaitingPatientsIDs()){
+            Assert.assertTrue(patientID.contains(ID));
+        }
     }
 }

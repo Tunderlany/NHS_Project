@@ -74,11 +74,24 @@ public class DashboardStepDef {
         addPatientPage.selectDisease(diseases.asList());
     }
     @When("User clicks add patient button")
-    public void user_clicks_add_patient_button() {
+    public void user_clicks_add_patient_button() throws InterruptedException {
         addPatientPage.clickAddPatientButton();
     }
     @Then("User validates patient {string} has successfully been added to waiting list")
     public void user_validates_patient_has_successfully_been_added_to_waiting_list(String patient) throws InterruptedException {
         Assert.assertTrue(dashboardPage.getAllWaitingPatients().contains(patient));
+    }
+
+
+
+
+    @Then("User validates searching with name")
+    public void user_validates_searching_with_name(io.cucumber.datatable.DataTable names) throws InterruptedException {
+        dashboardPage.searchWithName(names.asList());
+    }
+
+    @Then("User validates searching with patient ID {string}")
+    public void user_validates_searching_with_patient_id(String ID) throws InterruptedException {
+        dashboardPage.searchWithID(ID);
     }
 }

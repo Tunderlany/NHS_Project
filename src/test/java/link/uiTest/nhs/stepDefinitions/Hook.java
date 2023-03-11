@@ -15,6 +15,7 @@ public class Hook {
 
     @Before
     public void setup(){
+
         driver = DriverHelper.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

@@ -65,7 +65,8 @@ public class AddPatientPage {
         Thread.sleep(1000);
     }
 
-    public void clickAddPatientButton(){
+    public void clickAddPatientButton() throws InterruptedException {
         addPatientButton.click();
+        Thread.sleep(500);
     }
 }

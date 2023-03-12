@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/resources/features/ui",
         glue = "link/uiTest/nhs/stepDefinitions",
         dryRun = false,
         tags = "@NA-54",

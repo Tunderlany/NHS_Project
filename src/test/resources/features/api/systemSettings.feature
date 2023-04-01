@@ -3,7 +3,7 @@ Feature: Testing system settings API endpoints
 
   Background:
     Given User navigates to NHS app site
-    When User enters username 'Lola' and password 'Lola'
+    When User enters username 'admin' and password 'admin'
     Then User validates the page title is 'NHS patients'
     And User clicks system settings link
 

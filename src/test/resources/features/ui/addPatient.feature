@@ -9,11 +9,11 @@
     @NA-38
     Scenario: Testing the adding patient functionality of NHS web app
       Given User clicks add patient link
-      When User fills out patient information 'Lily', 'James', '222', '11/10/2000', 'Female'
+      When User fills out patient information 'Lola', 'James', '277', '11/10/2000', 'Female'
       And User selects patient disease
       | Allergies |
       | Headache  |
       And User clicks add patient button
-      Then User validates patient 'Lily James' has successfully been added to waiting list
+      Then User validates patient 'Lola James' has successfully been added to waiting list
 
 
